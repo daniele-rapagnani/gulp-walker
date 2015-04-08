@@ -1,0 +1,37 @@
+{
+  "name": "dependency",
+  "version": "0.6.0",
+  "description": "Dependencies aware incremental building for gulp",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": {
+    "name" : "Daniele Rapagnani",
+    "email": "mk@barrysoft.it",
+    "url"  : "http://www.barrysoft.it"
+  },
+  "keywords": [
+    "gulpplugin",
+    "dependencies",
+    "dependency",
+    "includes",
+    "import",
+    "requires"
+  ],
+  "license": "ISC",
+  "dependencies": {
+    "extend": "^2.0.0",
+    "fs": "0.0.2",
+    "gulp-util": "^3.0.4",
+    "path": "^0.11.14",
+    "string_decoder": "^0.10.31",
+    "through2": "^0.6.3",
+    "util": "^0.10.3",
+    "vinyl-file": "^1.1.1"
+  },
+  "engines": {
+    "node": ">= 0.9"
+  }
+}
