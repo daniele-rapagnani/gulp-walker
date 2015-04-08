@@ -42,7 +42,7 @@ module.exports = function(config) {
 			}
 		}
 
-		if (!config.stopperOnFirstRun) {
+		if (!firstRun || !config.stopperOnFirstRun) {
 			this.push(file);
 		}
 
