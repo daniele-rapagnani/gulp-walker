@@ -87,6 +87,7 @@ function Analyzer(config) {
 
 	this.finders = {};
 	this.resolvers = {};
+	this.processedFiles = {};
 	this.depList = new DependenciesList();
 
 	this.createFinders();
@@ -159,8 +160,9 @@ Analyzer.prototype = {
 		var extension = path.extname(filePath);
 
 		if (!this.finders.hasOwnProperty(extension)) {
-			Logger.debug("No finder registered for extension:", extension);
-			return null;
+			Logger.warn("No finder registered for extension:", extension);
+			this.processedFiles[filePath] = true;
+			return [];
 		}
 
 		var depFiles = [];
@@ -189,8 +191,15 @@ Analyzer.prototype = {
 		}
 
 		this.depList.updateDependencies(filePath, depFiles);
+		this.processedFiles[filePath] = true;
+
+		Logger.debug(this.depList.list);
 
 		return this.getDependencies(filePath);
+	},
+
+	isUnprocessedFile: function(filePath) {
+		return !this.processedFiles.hasOwnProperty(filePath);
 	},
 
 	getDependencies: function(filePath) {

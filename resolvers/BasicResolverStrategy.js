@@ -57,7 +57,7 @@ BasicResolverStrategy.prototype.checkExistingVariants = function(filePath) {
 					Logger.debug("Found directory:", newFile);
 					newFile = this.checkDirectory(newFile);
 				} else {
-					Logger.debug("Found file:", newFile);
+					Logger.info("Found file:", newFile);
 				}
 
 				return newFile;

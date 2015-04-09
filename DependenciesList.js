@@ -1,5 +1,14 @@
 Logger = require('./Logger');
 
+/**
+
+{
+	"depB" : [ "depA" ],
+	"depC" : [ "depB" ]
+}
+
+**/
+
 function DependenciesList() {
 	this.list = {};
 }
@@ -55,10 +64,17 @@ DependenciesList.prototype = {
 	},
 
 	getDependencies: function(filePath) {
-		if (this.list.hasOwnProperty(filePath))
-			return this.list[filePath];
+		if (!this.list.hasOwnProperty(filePath)) {
+			return [];
+		}
 
-		return false;
+		var dependencies = [].concat(this.list[filePath]);
+
+		for(var i = 0; i < this.list[filePath].length; i++) {
+			dependencies = dependencies.concat(this.getDependencies(this.list[filePath][i]));
+		}
+
+		return dependencies;
 	}
 };
 
