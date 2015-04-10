@@ -41,8 +41,6 @@ module.exports = function(config) {
 					continue;
 				}
 
-				console.log(base);
-
 				var dependencyFile = vinylFile.readSync(dependency, {
 					cwd: file.cwd,
 					base: base

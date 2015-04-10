@@ -15,8 +15,8 @@ var through    = require('through2');
 var browserify = require('browserify');
 var coffeeify  = require('coffeeify');
 
-var dependency = require('dependency');
-var Logger = require('dependency/Logger');
+var walker = require('gulp-walker');
+var Logger = require('gulp-walker/Logger');
 
 gulp.task('scripts', function() {
 	var sourceDir = './src/js/';
@@ -29,7 +29,7 @@ gulp.task('scripts', function() {
 
 	return gulp.src(srcs)
 		.pipe(cache('scripts'))
-		.pipe(dependency({
+		.pipe(walker({
 			debug: Logger.INFO,
 			resolvers: {
 				coffee: [{
@@ -80,7 +80,7 @@ gulp.task('styles', function() {
 
 	return gulp.src(srcs)
 		.pipe(cache('styles'))
-		.pipe(dependency({
+		.pipe(walker({
 			debug: Logger.INFO,
 			resolvers: {
 				styl: [{

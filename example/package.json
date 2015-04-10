@@ -9,6 +9,7 @@
   "author": "Daniele Rapagnani <mk@barrysoft.it> (http://www.barrysoft.it/)",
   "license": "ISC",
   "devDependencies": {
+    "gulp-walker": "git+https://github.com/daniele-rapagnani/gulp-walker.git",
     "browserify": "^9.0.8",
     "coffeeify": "^1.0.0",
     "gulp": "^3.8.11",
