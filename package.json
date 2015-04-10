@@ -1,5 +1,5 @@
 {
-  "name": "dependency",
+  "name": "gulp-walker",
   "version": "0.6.0",
   "description": "Dependencies aware incremental building for gulp",
   "license": "MIT",
@@ -18,9 +18,10 @@
     "dependency",
     "includes",
     "import",
-    "requires"
+    "requires",
+    "incremental"
   ],
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "extend": "^2.0.0",
     "fs": "0.0.2",

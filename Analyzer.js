@@ -110,7 +110,7 @@ Analyzer.prototype.createFinders = function() {
 
 			if (!item.name) {
 				throw new PluginName(
-					"Dependency",
+					"gulp-walker",
 					"Wrong finder strategy configuration entry. No name specified: " + JSON.stringify(item)
 				);
 			}
@@ -140,7 +140,7 @@ Analyzer.prototype.createResolvers = function() {
 
 			if (!item.name) {
 				throw new PluginError(
-					"Dependency",
+					"gulp-walker",
 					"Wrong path resolver strategy configuration entry. No name specified: " +
 					JSON.stringify(item)
 				);
