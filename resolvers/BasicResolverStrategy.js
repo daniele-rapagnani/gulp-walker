@@ -15,8 +15,8 @@ util.inherits(BasicResolverStrategy, ResolverStrategy);
 
 BasicResolverStrategy.prototype.resolve = function(includerPath, filePath) {
 	var basePath = path.resolve(path.dirname(includerPath));
-	var absPath = path.resolve(basePath, filePath);
-	var realFile = this.checkExistingVariants(absPath);
+	/*var absPath = path.resolve(basePath, filePath);*/
+	var realFile = this.checkExistingVariants(filePath, [basePath]);
 
 	if (!realFile) {
 		if (!this.config.existingFilesOnly) {
@@ -29,8 +29,10 @@ BasicResolverStrategy.prototype.resolve = function(includerPath, filePath) {
 	return realFile;
 };
 
-BasicResolverStrategy.prototype.checkExistingVariants = function(filePath) {
-	var basePaths = [""].concat(this.config.basePaths);
+BasicResolverStrategy.prototype.checkExistingVariants = function(filePath, additionalPaths) {
+	additionalPaths = additionalPaths || [];
+
+	var basePaths = [].concat(this.config.basePaths).concat(additionalPaths);
 	var extensions = [""].concat(this.config.extensions);
 
 	for (var j = 0; j < basePaths.length; j++) {

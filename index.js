@@ -1,13 +1,15 @@
 var through   = require('through2');
 var gutil     = require('gulp-util');
 var extend    = require('extend');
+var path      = require('path');
 var vinylFile = require('vinyl-file');
 
 var StringDecoder = require('string_decoder').StringDecoder;
 var Analyzer      = require('./Analyzer');
+var AnalyzerState = require('./AnalyzerState');
 var Logger        = require('./Logger');
 
-var analyzer = null;
+var analyzerState = new AnalyzerState();
 
 module.exports = function(config) {
 	config = extend(true, {
@@ -16,15 +18,14 @@ module.exports = function(config) {
 	}, config);
 
 	Logger.level = config.debug === false ? Logger.WARN : config.debug;
-
-	if (!analyzer) {
-		analyzer = new Analyzer(config);
-	}
+	var analyzer = new Analyzer(config, analyzerState);
 
 	return through.obj(function(file, enc, cb) {
 		var decoder = new StringDecoder(enc);
 		var content = decoder.write(file.contents);
 		var fileUnprocessed = analyzer.isUnprocessedFile(file.path);
+
+		analyzer.registerFileBase(file);
 
 		var dependencies = analyzer.resolveDependencies(content, file.path);
 
@@ -32,9 +33,19 @@ module.exports = function(config) {
 			Logger.debug("Pushing dependencies for", file.path, dependencies);
 			for (var i = 0; i < dependencies.length; i++) {
 				var dependency = dependencies[i];
+
+				var base = analyzer.getFileBase(dependency);
+
+				if (!base) {
+					Logger.warn("The file '"+file.path+"' wasn't analyzed the first time");
+					continue;
+				}
+
+				console.log(base);
+
 				var dependencyFile = vinylFile.readSync(dependency, {
 					cwd: file.cwd,
-					base: file.base
+					base: base
 				});
 
 				this.push(dependencyFile);

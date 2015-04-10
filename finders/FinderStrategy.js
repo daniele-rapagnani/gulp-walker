@@ -4,22 +4,21 @@ var Logger = require('../Logger');
 var PluginError = require('gulp-util').PluginError;
 
 function FinderStrategy(config) {
+	config = config || {};
 	this.config = extend(true, {}, config);
 }
 
-FinderStrategy.prototype = {
-	find: function(content, filePath) {
-		throw new PluginError("Dependency", "Your FinderStrategy must implement the find method");
-	},
+FinderStrategy.prototype.find = function(content, filePath) {
+	throw new PluginError("Dependency", "Your FinderStrategy must implement the find method");
+};
 
-	shouldIgnore: function(dependency) {
-		if (this.config.exclude && this.config.exclude.indexOf(dependency) !== -1) {
-			Logger.debug("Ignoring dependecy: ", dependency);
-			return true;
-		}
-
-		return false;
+FinderStrategy.prototype.shouldIgnore = function(dependency) {
+	if (this.config.exclude && this.config.exclude.indexOf(dependency) !== -1) {
+		Logger.debug("Ignoring dependecy: ", dependency);
+		return true;
 	}
+
+	return false;
 };
 
 FinderStrategy.finders = {};

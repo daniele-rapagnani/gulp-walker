@@ -5,7 +5,7 @@ var rename     = require('gulp-rename');
 var cache      = require('gulp-cached');
 var filter     = require('gulp-filter');
 var gutil      = require('gulp-util');
-var tap        = require('gulp-tap');
+var stylus     = require('gulp-stylus');
 
 var source     = require('vinyl-source-stream');
 
@@ -19,21 +19,32 @@ var dependency = require('dependency');
 var Logger = require('dependency/Logger');
 
 gulp.task('scripts', function() {
+	var sourceDir = './src/js/';
+	var outputDir = './public/js/';
+	var srcs = [
+		sourceDir + "**/*.coffee",
+		"./libs/js/**/*.coffee",
+		"./libs/js/**/*.js"
+	];
 
-	var sourceDir = './src/';
-	var outputDir = './public/';
-
-	return gulp.src(sourceDir + "**/*.coffee")
+	return gulp.src(srcs)
 		.pipe(cache('scripts'))
 		.pipe(dependency({
-			debug: Logger.INFO
+			resolvers: {
+				coffee: [{
+					config: {
+						basePaths: ["./libs/js/"]
+					}
+				}]
+			}
 		}))
 		.pipe(filter(["**/app.coffee"]))
 		.pipe(through.obj(function(file, enc, cb) {
 			var b = browserify({
 				entries: file.path,
 				extensions: ['.coffee'],
-				transform: [coffeeify]
+				transform: [coffeeify],
+				paths: ['./libs/js']
 			});
 
 			b.on('file', function(file) {
@@ -59,8 +70,42 @@ gulp.task('scripts', function() {
 	;
 });
 
-gulp.task('watch', ['scripts'], function() {
-	gulp.watch("./src/**/**.coffee", ['scripts']);
+gulp.task('styles', function() {
+	var srcs = [
+		"./src/css/**/*.styl",
+		"./libs/css/**/*.styl",
+		"./libs/css/**/*.css"
+	];
+
+	return gulp.src(srcs)
+		.pipe(cache('styles'))
+		.pipe(dependency({
+			resolvers: {
+				styl: [{
+					config: {
+						basePaths: ["./libs/css/"]
+					}
+				}],
+			}
+		}))
+		.pipe(filter("**/app.styl"))
+		.pipe(stylus({
+			include: ['./libs/css/']
+		}))
+		.pipe(gulp.dest('./public/css/'))
+})
+
+gulp.task('watch', ['scripts', 'styles'], function() {
+	gulp.watch([
+		"./src/**/*.styl",
+		"./src/**/*.coffee",
+		"./src/**/*.js",
+		"./src/**/*.css",
+		"./libs/**/*.styl",
+		"./libs/**/*.coffee",
+		"./libs/**/*.css",
+		"./libs/**/*.js"
+	], ['scripts', 'styles']);
 });
 
 gulp.task('default', ['watch']);

@@ -5,6 +5,8 @@ var Logger = require('../Logger');
 var FinderStrategy = require('./FinderStrategy');
 
 function RegexFinderStrategy(config) {
+	config = config || {};
+
 	FinderStrategy.call(this, config);
 	this.config = extend(true, this.config, {}, config);
 }
