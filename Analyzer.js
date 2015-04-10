@@ -191,8 +191,6 @@ Analyzer.prototype.resolveDependencies = function(content, filePath) {
 	this.state.depList.updateDependencies(filePath, depFiles);
 	this.state.processedFiles[filePath] = true;
 
-	Logger.debug(JSON.stringify(this.state.depList.list, null, 2));
-
 	return this.getDependencies(filePath);
 };
 

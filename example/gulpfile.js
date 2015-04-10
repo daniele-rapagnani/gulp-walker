@@ -30,6 +30,7 @@ gulp.task('scripts', function() {
 	return gulp.src(srcs)
 		.pipe(cache('scripts'))
 		.pipe(dependency({
+			debug: Logger.INFO,
 			resolvers: {
 				coffee: [{
 					config: {
@@ -80,6 +81,7 @@ gulp.task('styles', function() {
 	return gulp.src(srcs)
 		.pipe(cache('styles'))
 		.pipe(dependency({
+			debug: Logger.INFO,
 			resolvers: {
 				styl: [{
 					config: {

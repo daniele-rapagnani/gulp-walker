@@ -1,14 +1,5 @@
 Logger = require('./Logger');
 
-/**
-
-{
-	"depB" : [ "depA" ],
-	"depC" : [ "depB" ]
-}
-
-**/
-
 function DependenciesList() {
 	this.list = {};
 }
