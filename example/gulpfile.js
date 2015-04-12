@@ -16,7 +16,7 @@ var browserify = require('browserify');
 var coffeeify  = require('coffeeify');
 
 var walker = require('gulp-walker');
-var Logger = require('gulp-walker/Logger');
+var Logger = require('gulp-walker/lib/Logger');
 
 gulp.task('scripts', function() {
 	var sourceDir = './src/js/';
