@@ -5,9 +5,9 @@ var path      = require('path');
 var vinylFile = require('vinyl-file');
 
 var StringDecoder = require('string_decoder').StringDecoder;
-var Analyzer      = require('./Analyzer');
-var AnalyzerState = require('./AnalyzerState');
-var Logger        = require('./Logger');
+var Analyzer      = require('./lib/Analyzer');
+var AnalyzerState = require('./lib/AnalyzerState');
+var Logger        = require('./lib/Logger');
 
 var analyzerState = new AnalyzerState();
 
