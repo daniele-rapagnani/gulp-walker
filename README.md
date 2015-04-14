@@ -26,7 +26,7 @@ gulp.src("**/*.styl")
     // Do your normal compilation/bundling/processing
     // stuff here...
 ```
-You can find a working example for a stylus + browserify + coffee environment [here](https://github.com/daniele-rapagnani/gulp-walker/example/gulpfile.js).
+You can find a working example for a stylus + browserify + coffee environment [here](https://github.com/daniele-rapagnani/gulp-walker/blob/master/example/gulpfile.js).
 
 #### Supported Languages
 The following languages are actually supported but there are plans to support many more and you can easily implement your own finder.
@@ -44,4 +44,4 @@ When one of the previously analyzed files is sent again through the stream, gulp
 [gulp-progeny](https://github.com/HerringtonDarkholme/gulp-progeny)
 
 ## Documentation
-You can find the documentation [here](https://github.com/daniele-rapagnani/gulp-walker/docs/api.md)
+You can find the documentation [here](https://github.com/daniele-rapagnani/gulp-walker/blob/master/docs/api.md)
