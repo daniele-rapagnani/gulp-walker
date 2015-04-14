@@ -1,10 +1,14 @@
 {
   "name": "gulp-walker",
-  "version": "0.6.0",
+  "version": "0.6.2",
   "description": "Dependencies aware incremental building for gulp",
   "license": "MIT",
   "main": "index.js",
-  "homepage": "https://github.com/daniele-rapagnani/gulp-walker",
+  "homepage": "http://github.com/daniele-rapagnani/gulp-walker",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/daniele-rapagnani/gulp-walker.git"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "docs": "jsdoc2md lib/**/*.js > docs/api.md"
