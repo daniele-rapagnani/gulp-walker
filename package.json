@@ -1,6 +1,6 @@
 {
   "name": "gulp-walker",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "description": "Dependencies aware incremental building for gulp",
   "license": "MIT",
   "main": "index.js",
