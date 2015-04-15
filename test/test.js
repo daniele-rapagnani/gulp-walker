@@ -1,7 +1,10 @@
+var path = require("path");
 var assert = require("assert");
 var chai = require("chai");
 var should = chai.should();
 var RegexFinderStrategy = require('../lib/finders/RegexFinderStrategy');
+var BasicResolverStrategy = require('../lib/resolvers/BasicResolverStrategy');
+var Logger = require('../lib/Logger');
 
 describe('RegexFinderStrategy', function() {
 	describe('#find', function() {
@@ -34,5 +37,18 @@ describe('RegexFinderStrategy', function() {
 
 			results.should.eql(['gotme', 'gotmetoo']);
 		});
+	});
+});
+
+describe('BasicResolverStrategy', function() {
+	describe('#resolve', function() {
+
+		it('should resolve relative paths relative to the includer', function() {
+			var basicResolver = new BasicResolverStrategy();
+
+			var result = basicResolver.resolve(path.join(__dirname, 'files/test.txt'), './nested/a.txt');
+			result.should.equal(path.join(__dirname, 'files/nested/a.txt'));
+		});
+
 	});
 });
