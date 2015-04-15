@@ -14,9 +14,9 @@
     "docs": "jsdoc2md lib/**/*.js > docs/api.md"
   },
   "author": {
-    "name" : "Daniele Rapagnani",
+    "name": "Daniele Rapagnani",
     "email": "mk@barrysoft.it",
-    "url"  : "http://www.barrysoft.it"
+    "url": "http://www.barrysoft.it"
   },
   "keywords": [
     "gulpplugin",
@@ -27,7 +27,6 @@
     "requires",
     "incremental"
   ],
-  "license": "MIT",
   "dependencies": {
     "extend": "^2.0.0",
     "fs": "0.0.2",
@@ -40,5 +39,8 @@
   },
   "engines": {
     "node": ">= 0.9"
+  },
+  "devDependencies": {
+    "chai": "^2.2.0"
   }
 }
