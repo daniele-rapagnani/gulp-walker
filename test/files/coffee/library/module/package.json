@@ -1,0 +1,7 @@
+{
+  "name": "Test Module",
+  "version": "1.0.0",
+  "description": "A test module to be included",
+  "main": "dist/main.js",
+  "license": "MIT"
+}
